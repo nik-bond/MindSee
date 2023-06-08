@@ -11,6 +11,6 @@ def index():
 @app.get('/predict_text')
 def predict_text(image_name):
 
-    predicted_caption = ['cat','dog','goat']
+    predicted_caption = ["dramatic", "sunset", "cloud", "sky"]
 
     return {'predicted_caption':predicted_caption}
