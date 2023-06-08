@@ -1,0 +1,14 @@
+#Pre Processing
+pandas
+numpy
+matplotlib
+
+#Model
+tensorflow==2.10.0
+
+#API
+uvicorn
+fastapi
+
+#Front End
+streamlit

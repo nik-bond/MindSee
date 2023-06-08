@@ -1,0 +1,8 @@
+README.md
+setup.py
+mindsee.egg-info/PKG-INFO
+mindsee.egg-info/SOURCES.txt
+mindsee.egg-info/dependency_links.txt
+mindsee.egg-info/not-zip-safe
+mindsee.egg-info/requires.txt
+mindsee.egg-info/top_level.txt
