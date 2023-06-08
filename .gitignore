@@ -3,3 +3,7 @@ data/
 .ipynb_checkpoints/
 .DS_Store
 .env
+.envrc
+Dockerfile
+data_loading.txt
+data_loading.py
