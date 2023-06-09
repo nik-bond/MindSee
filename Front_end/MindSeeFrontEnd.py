@@ -29,8 +29,6 @@ image2= "Front_end/sample_pics/photo-1565372195458-9de0b320ef04.jpeg"
 image3= "Front_end/sample_pics/photo-1582550945154-66ea8fff25e1.jpeg"
 image4= "Front_end/sample_pics/photo-1591797442444-039f23ddcc14.jpeg"
 
-st.markdown("### Click on an image")
-
 images = []
 for file in [image0, image1, image2, image3, image4]:
     with open(file, "rb") as image:
