@@ -8,6 +8,7 @@ openai
 os
 requests
 gsutil
+tqdm
 
 #Model
 # tensorflow==2.10.0

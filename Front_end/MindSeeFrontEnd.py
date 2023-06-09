@@ -25,6 +25,7 @@ st.markdown("""# MindSee
 
 
 
+
 # To generate random 5 images from the folder
 @st.cache_data(persist=True)
 def get_images():
@@ -45,6 +46,7 @@ def get_images():
 random_image_list = get_images()
 
 # To get a picture grid
+
 images = []
 for file in random_image_list:
     with open(file, "rb") as image:
