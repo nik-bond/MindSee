@@ -18,7 +18,7 @@ st.markdown("""# MindSee
 ## Recreating images from MRI scans""")
 
 
-Mi
+
 # this slider allows the user to select a number of lines
 # to display in the dataframe
 # the selected value is returned by st.slihe displayed lines
