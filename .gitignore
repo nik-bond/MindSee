@@ -9,4 +9,5 @@ Front_end/sample_pics/
 Dockerfile
 data_loading.txt
 data_loading.py
-
+test_images_indexed
+.pyc
