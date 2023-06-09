@@ -4,6 +4,9 @@ data/
 .DS_Store
 .env
 .envrc
+images/
+Front_end/sample_pics/
 Dockerfile
 data_loading.txt
 data_loading.py
+
