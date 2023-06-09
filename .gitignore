@@ -9,4 +9,4 @@ Front_end/sample_pics/
 Dockerfile
 data_loading.txt
 data_loading.py
-
+/notebooks/Subject_01/test_images/*
