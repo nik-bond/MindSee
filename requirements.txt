@@ -4,8 +4,6 @@ numpy
 matplotlib
 nibabel
 h5py
-openai
-os
 requests
 gsutil
 tqdm
@@ -24,11 +22,6 @@ fastapi
 streamlit
 st_clickable_images
 pathlib
-base64
-json
-PIL
-glob
-random
 
 # Dall E
 openai
