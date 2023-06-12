@@ -26,3 +26,9 @@ st_clickable_images
 pathlib
 base64
 json
+PIL
+glob
+random
+
+# Dall E
+openai
