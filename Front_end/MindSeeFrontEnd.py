@@ -24,8 +24,6 @@ st.markdown("""# MindSee
 
 
 
-
-
 # To generate random 5 images from the folder
 @st.cache_data(persist=True)
 def get_images():
