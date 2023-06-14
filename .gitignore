@@ -11,5 +11,9 @@ data_loading.txt
 data_loading.py
 *.pyc
 /notebooks/Subject_01/test_images/*
+<<<<<<< HEAD
 model/models/*
 
+=======
+model/models/
+>>>>>>> master
