@@ -4,8 +4,6 @@ numpy
 matplotlib
 nibabel
 h5py
-openai
-os
 requests
 gsutil
 tqdm
@@ -15,6 +13,11 @@ tqdm
 tensorflow-macos==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version # Mac M-chips
 tensorflow==2.10.0; sys_platform == 'darwin' and 'ARM' not in platform_version # Mac Intel chips
 tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
+xboost
+transformers
+torch
+sentence_transformers
+
 
 #API
 uvicorn
@@ -24,5 +27,6 @@ fastapi
 streamlit
 st_clickable_images
 pathlib
-base64
-json
+
+# Dall E
+openai

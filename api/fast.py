@@ -10,7 +10,7 @@ def index():
 # Predict endpiont
 @app.get('/predict_text')
 def predict_text(image_name):
-
-    predicted_caption = ["dramatic", "sunset", "cloud", "sky"]
+    
+    predicted_caption = ["snowborder", "sun", "snow", "trick"]
 
     return {'predicted_caption':predicted_caption}
