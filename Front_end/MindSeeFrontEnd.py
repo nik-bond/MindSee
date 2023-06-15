@@ -134,7 +134,7 @@ else:
     # Getting back the   predicted captions from the Model
 
     params= {'image_name':uploaded_file_index}
-    response=requests.get(os.environ.get("API_URL"), params=params).json()
+    response=requests.get(st.secrets["API_URL"], params=params).json()
     response = response[0]+', '+response[1]+' ,'+response[2]+' ,'+response[3] #+ ' photorealistic image'
     response_display = f"## {response}"
     st.markdown(response_display)
