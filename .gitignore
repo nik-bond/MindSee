@@ -3,27 +3,17 @@ data/
 .ipynb_checkpoints/
 .DS_Store
 .env
-.envrc
-images/
 Front_end/sample_pics/
 Dockerfile
 data_loading.txt
 data_loading.py
 *.pyc
 /notebooks/Subject_01/test_images/*
-<<<<<<< HEAD
-<<<<<<< HEAD
 model/models/
-=======
-<<<<<<< HEAD
-model/models/*
-
-=======
-model/models/
->>>>>>> master
->>>>>>> 8150de42badb21c47ae0eb6664601c7ff689b22c
-=======
 model/models/*
 data/
 responses/
->>>>>>> fbb577fc1149fcc9a1662cb49ef9cfb41a409fb4
+Front_end/*.png
+images/
+
+
