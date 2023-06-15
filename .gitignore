@@ -3,8 +3,6 @@ data/
 .ipynb_checkpoints/
 .DS_Store
 .env
-.envrc
-images/
 Front_end/sample_pics/
 Dockerfile
 data_loading.txt
@@ -20,4 +18,7 @@ model/models/
 model/models/*
 data/
 responses/
+
+Front_end/*.png
+images/
 
