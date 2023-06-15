@@ -28,6 +28,25 @@ fastapi
 streamlit
 st_clickable_images
 pathlib
-
-# Dall E
+base64
+json
+os
+PIL
+glob
+random
 openai
+
+
+
+
+
+
+
+
+
+
+import os
+import PIL
+import glob, random
+import streamlit as st
+from streamlit_js_eval import streamlit_js_eval

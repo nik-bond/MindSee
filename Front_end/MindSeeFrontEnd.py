@@ -4,7 +4,6 @@ import requests
 import numpy as np
 import pandas as pd
 import requests
-from mindsee.params import *
 import openai
 from pathlib import Path
 import base64
@@ -12,10 +11,8 @@ import json
 import os
 import PIL
 import glob, random
-
-
-
-
+import streamlit as st
+from streamlit_js_eval import streamlit_js_eval
 
 
 
@@ -23,14 +20,14 @@ st.markdown("""# MindSee
 # Recreating images from MRI scans""")
 
 
-
 # To generate random 5 images from the folder
-@st.cache_data(persist=True)
+@st.cache_data(persist=False)
 def get_images():
 
     random_image_lst= []
     for i in range(1000):
-        file_path_type = ["Front_end/test_images_indexed/*.png"]
+        #file_path_type = ["data/test_images_indexed/*.png"]
+        file_path_type = ["gs://mindsee-preproc-data-2/subj01/test_images_indexed/*.png"]
         images = glob.glob(random.choice(file_path_type))
         random_image = random.choice(images)
         # random_image_lst.append(random_image)
@@ -68,20 +65,12 @@ else:
 
 # st.markdown(uploaded_file)
 
-
-@st.cache_data
-def square(x):
-    return x**2
-
-@st.cache_data
-def cube(x):
-    return x**3
-
 if st.button("Generate New Images"):
 
     # Clear values from *all* all in-memory and on-disk data caches:
     # i.e. clear values from both square and cube
     st.cache_data.clear()
+    streamlit_js_eval(js_expressions="parent.window.location.reload()")
 
 
 
@@ -106,66 +95,61 @@ else:
     st.markdown(uploaded_file_index)
     st.markdown(type(uploaded_file_index))
     st.markdown(uploaded_file_name)
-    data=pd.read_csv("../MindSee/df_test.csv")
-    data=data.set_index("Image_index")
-    PROMPT = data.loc[uploaded_file_index,'test_caps_processed']
-    st.markdown(PROMPT)
-# uploaded_file_name = uploaded_file_name.rsplit('/', 1)[-1]
+
+
+
+    # Get request to the API
+    # Getting back the   predicted captions from the Model
+
+    params= {'image_name':uploaded_file_index}
+    response=requests.get(os.environ.get("API_URL"), params=params).json()
+    response = response[0]+', '+response[1]+' ,'+response[2]+' ,'+response[3] #+ ' photorealistic image'
+    # response = ', '.join(response)
+    st.markdown(response)
 
 
 
 
-
-
-# Get request to the API
-# Getting back the predicted captions from the Model
-
-# params= {'image_name':"a,b,c"}
-# response=requests.get(API_URL, params=params).json()
-# response = list(response.values())[0]
-# response = ', '.join(response)
-# st.markdown(response)
-
-# Dall E
-
+#Dall E
+if st.button("Render Image"):
 # if uploaded_file is not None:
 
-#     ## Creating the Dalle image as a json file
-#     # PROMPT = response
-#     DATA_DIR = Path.cwd() / "responses"
+    ## Creating the Dalle image as a json file
+    PROMPT = response
+    DATA_DIR = Path.cwd() / "responses"
 
-#     #creating directory for Dall E-json response
-#     DATA_DIR.mkdir(exist_ok=True)
+    #creating directory for Dall E-json response
+    DATA_DIR.mkdir(exist_ok=True)
 
-#     openai.api_key = OPENAI_KEY
+    openai.api_key = os.environ.get("OPENAI_KEY")
 
-#     response = openai.Image.create(
-#         prompt=PROMPT,
-#         n=1,
-#         size="512x512",
-#         response_format="b64_json",
-#     )
-    # file_name = DATA_DIR / f"{PROMPT[:10]}-{response['created']}.json"
+    response = openai.Image.create(
+        prompt=PROMPT,
+        n=1,
+        size="512x512",
+        response_format="b64_json",
+    )
+    file_name = DATA_DIR / f"{PROMPT[:10]}-{response['created']}.json"
 
-    # with open(file_name, mode="w", encoding="utf-8") as file:
-    #     json.dump(response, file)
+    with open(file_name, mode="w", encoding="utf-8") as file:
+        json.dump(response, file)
 
-    # ##Converting and saving the image
-    # DATA_DIR = Path.cwd() / "responses"
-    # JSON_FILE = file_name
-    # IMAGE_DIR = Path.cwd() / "images" / JSON_FILE.stem
+    ##Converting and saving the image
+    DATA_DIR = Path.cwd() / "responses"
+    JSON_FILE = file_name
+    IMAGE_DIR = Path.cwd() / "images" / JSON_FILE.stem
 
-    # IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
 
-    # with open(JSON_FILE, mode="r", encoding="utf-8") as file:
-    #     response = json.load(file)
+    with open(JSON_FILE, mode="r", encoding="utf-8") as file:
+        response = json.load(file)
 
-    # for index, image_dict in enumerate(response["data"]):
-    #     image_data = base64.b64decode(image_dict["b64_json"])
-    #     image_file = IMAGE_DIR / f"{JSON_FILE.stem}-{index}.png"
-    #     st.image(image_data)
-    #     with open(image_file, mode="wb") as png:
-    #         png.write(image_data)
+    for index, image_dict in enumerate(response["data"]):
+        image_data = base64.b64decode(image_dict["b64_json"])
+        image_file = IMAGE_DIR / f"{JSON_FILE.stem}-{index}.png"
+        st.image(image_data)
+        with open(image_file, mode="wb") as png:
+            png.write(image_data)
 
 
-# # # Display the Dall E image on Streamlit
+# # Display the Dall E image on Streamlit
