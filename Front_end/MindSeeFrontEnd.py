@@ -24,14 +24,40 @@ folder = Path(__file__).resolve().parent
 st.markdown("""# MindSee
 # Recreating images from MRI scans""")
 
+
+
+#blob_path = "/subj01/test_images_indexed"
+# @st.cache_data(persist=False)
+def select_filter():
+    option = st.selectbox('Select Images Filter',('all images', 'good prediction', 'interesting prediction'))
+    return option
+
+#@st.cache_data(persist=False)
+
+#def image_filter(option):
+
+option = select_filter()
+
+if option == "all images":
+    blob_path = "subj01/test_images_indexed"
+
+if option == "good prediction":
+    blob_path = "images/good"
+
+if option == "interesting prediction":
+    blob_path = "images/interesting"
+
+    #return blob_path
+
+
 # to load/upload images from Google Cloud buckets
 @st.cache_data(persist=False)
-def load_picfolder():
+def load_picfolder(blob_path):
     client = storage.Client()
     # access the bucket
     bucket = client.get_bucket('mindsee-preproc-data-2')
     # list all of the blobs
-    images = list(bucket.list_blobs(prefix="subj01/test_images_indexed"))
+    images = list(bucket.list_blobs(prefix=blob_path))
     # shuffle the blobs
     random.shuffle(images)
     files = []
@@ -48,6 +74,8 @@ def load_picfolder():
     # return a list of six file paths where the new files stored
     return files
 
+random_image_list = load_picfolder(blob_path)
+# st.write(random_image_list)
 
 # To generate random 5 images from the folder
 # @st.cache_data(persist=False)
@@ -67,7 +95,9 @@ def load_picfolder():
 
 #     return random_image_lst
 
-random_image_list = load_picfolder()
+
+
+# random_image_list = load_picfolder(blob_path)
 
 # To get a picture grid
 
@@ -96,6 +126,7 @@ else:
     uploaded_file=random_image_list[clicked][0]
 
 # st.markdown(uploaded_file)
+
 
 if st.button("Generate New Images"):
 
