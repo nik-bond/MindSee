@@ -29,3 +29,4 @@ streamlit
 st_clickable_images
 pathlib
 openai
+streamlit_js_eval
