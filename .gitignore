@@ -11,6 +11,13 @@ data_loading.txt
 data_loading.py
 *.pyc
 /notebooks/Subject_01/test_images/*
+
+
+
+
+model/models/
+
 model/models/*
 data/
 responses/
+
