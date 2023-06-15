@@ -153,7 +153,7 @@ if st.button("Render Image"):
     #creating directory for Dall E-json response
     DATA_DIR.mkdir(exist_ok=True)
 
-    openai.api_key = os.environ.get("OPENAI_KEY")
+    openai.api_key = st.secrets["OPENAI_KEY"]
 
     response = openai.Image.create(
         prompt=PROMPT,
