@@ -2,7 +2,6 @@
 pandas
 numpy
 matplotlib
-nibabel
 h5py
 requests
 gsutil
@@ -14,10 +13,7 @@ tensorflow-macos==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version
 tensorflow-estimator==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version # Mac M-chips
 tensorflow==2.10.0; sys_platform == 'darwin' and 'ARM' not in platform_version # Mac Intel chips
 tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
-xgboost
-transformers
-torch
-sentence_transformers
+
 
 
 #API
@@ -30,3 +26,4 @@ st_clickable_images
 pathlib
 openai
 streamlit_js_eval
+google-cloud-storage
